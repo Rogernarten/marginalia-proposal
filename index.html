@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marginalia · Project Proposal</title>
+  <style>
+    body { margin: 0; background: #fbf8f3; color: #2b2622; font: 17px/1.6 Georgia, "Times New Roman", serif; }
+    main { max-width: 680px; margin: 0 auto; padding: 56px 24px 80px; }
+    h1 { font-size: 2.2rem; line-height: 1.15; margin: 0 0 8px; }
+    h2 { font-size: 1.3rem; margin: 48px 0 8px; border-top: 1px solid #e3dccf; padding-top: 24px; }
+    .meta { color: #6b6158; font: 14px/1.5 system-ui, sans-serif; }
+    .lede { font-size: 1.25rem; margin: 24px 0 0; }
+    blockquote { margin: 16px 0; padding: 4px 0 4px 16px; border-left: 3px solid #a3472f; }
+    blockquote p { margin: 0 0 8px; }
+    .orig { color: #6b6158; font-size: 14px; }
+    blockquote footer { color: #6b6158; font: 14px/1.5 system-ui, sans-serif; margin-top: 4px; }
+    table { width: 100%; border-collapse: collapse; font: 15px/1.5 system-ui, sans-serif; margin-top: 12px; }
+    th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid #e3dccf; }
+    th { white-space: nowrap; }
+    a { color: #a3472f; }
+  </style>
+</head>
+<body>
+<main>
+  <p class="meta">Design, Build, Ship · Project Proposal · Yixiao Huang</p>
+  <h1>Marginalia</h1>
+  <!-- One line: the problem, and the user. -->
+  <p class="lede">For people who want to read a real book again but can't settle down: read a
+    classic with every hard word and old custom explained in the margin, fitted to that sentence,
+    so you never have to leave the page.</p>
+
+  <h2>Who it's for</h2>
+  <!-- Who they are, then what they told you, in their words. -->
+  <p>I talked to three readers on 3 November 2026: one who wants to read more but can't settle
+    down, one literature student who reads old books all the time, and one who has read every night
+    for half a year. We talked in Chinese; their words are translated, with the originals below.</p>
+  <blockquote>
+    <p>“I scroll short videos until midnight, and the next day my brain feels gummed up. I can feel
+      myself getting duller.”</p>
+    <p>“Now whenever I have a question I just ask AI. I can't even be bothered to think.”</p>
+    <p>“I've bought several books. Two pages in, I want to reach for my phone. I just can't settle
+      down.”</p>
+    <p class="orig" lang="zh">每天刷短视频刷到半夜，第二天脑子像糊住了一样，我自己都能感觉到变钝了。现在有什么问题直接问 AI，连想都懒得想。买了好几本书，翻开两页就想摸手机，根本静不下来。</p>
+    <footer>Kim, wants to read more</footer>
+  </blockquote>
+  <blockquote>
+    <p>“Reading is part of my everyday life, but with old books the worst part is the notes. Half a
+      page of notes for every page of text. By the time I come back from the notes, I've forgotten
+      what the last sentence said.”</p>
+    <p>“Some words I look up in the dictionary, and when I put the meaning back in the text it still
+      doesn't fit. The lookup was wasted.”</p>
+    <p>“Sometimes I skip the notes and push through, but afterwards I always feel I missed a lot.”</p>
+    <p class="orig" lang="zh">读书对我来说是日常，但读老书最头疼的是注释。一页正文半页注，看完注释回来，上一句说什么已经忘了。有些词查了字典，放回原文还是不对劲，等于白查。有时候干脆跳过注释硬读，读完又总觉得漏了很多。</p>
+    <footer>Tom, literature student</footer>
+  </blockquote>
+  <blockquote>
+    <p>“My rule is twenty minutes every night before bed. I've kept it up for more than half a
+      year.”</p>
+    <p>“At first I forced myself with daily check-ins. Then it became a habit. Now I can't sleep if
+      I don't read.”</p>
+    <p>“Never make the plan too big. I tried fifty pages a day and fell apart in three days.”</p>
+    <p class="orig" lang="zh">我给自己定的是每天睡前读二十分钟，坚持大半年了。一开始靠打卡逼自己，后来成习惯了，不读反而睡不着。计划千万别定太大。我试过一天五十页，三天就崩了。</p>
+    <footer>Mike, reads every night</footer>
+  </blockquote>
+  <p>All three want to finish a good book, and stop for different reasons. Kim stops before
+    starting: the phone is closer than the book. Tom stops in the middle: every trip to the notes
+    or the dictionary breaks the sentence, and a dictionary meaning often doesn't fit the text. Mike
+    shows what works: a small plan, kept every day.</p>
+  <p>Kim's worry about AI shapes the design: the app explains the word or line you chose, briefly,
+    and stops. It never summarizes the book or reads it for you.</p>
+
+  <h2>Focus: AI</h2>
+  <p>A dictionary gives every meaning of a word; Tom needs the one that fits this sentence. That's
+    what a model can do. When you select a word or a line, the app sends the model the sentence
+    around it, and the model can call tools: Wikipedia (as Marginalia already does), a dictionary,
+    and the text of the book up to where you are. It answers in the margin in a few lines, says
+    which sources it used, and never mentions what happens later in the book.</p>
+  <p>Going deep means checking it. An eval set of hard passages from public-domain novels, each
+    with the meaning that fits, runs on every change: is the meaning right for this sentence, is it
+    short, does it cite a source, does it avoid spoilers.</p>
+
+  <h2>Roadmap</h2>
+  <table>
+    <tr><th>Nov 10–17</th><td>Riskiest part first: the eval set (30 passages from <i>Pride and
+      Prejudice</i>) and the explain call with its tools, until it passes. Then put it in the margin of
+      Marginalia, where sign-up, the book and the notebook already work.</td></tr>
+    <tr><th>Nov 17 · v1</th><td>A new reader signs up, opens <i>Pride and Prejudice</i>, selects a
+      word or line they don't understand, reads an explanation that fits that sentence without leaving
+      the page, and saves it to their notebook.</td></tr>
+    <tr><th>Nov 17–24</th><td>Mike's small daily goal: choose 10 or 20 minutes, check in each day,
+      see the streak. More books, and more passages in the evals.</td></tr>
+    <tr><th>Nov 24</th><td>No class (Thanksgiving). Kim, Tom and Mike use it for a week; I watch
+      where they stop.</td></tr>
+    <tr><th>Dec 1 · v2</th><td>A quiet reading mode for Kim: one short section at a time, with the
+      margin and the timer and nothing else. Fixes from the week of testing.</td></tr>
+    <tr><th>Left out</th><td>Book summaries or a chat that answers anything about the book (the app
+      explains, it doesn't read for you). A phone app. Book clubs and sharing. Books still under
+      copyright.</td></tr>
+  </table>
+
+  <h2>How it's built</h2>
+  <table>
+    <tr><th>Next.js on Vercel</th><td>What Marginalia already runs on. The model is called from a
+      server route, so its key never reaches the browser.</td></tr>
+    <tr><th>Clerk</th><td>Sign-up and sign-in, already set up for Marginalia.</td></tr>
+    <tr><th>Supabase</th><td>Postgres with row-level security for the notebook, reading position
+      and check-ins: each reader sees only their own. Explanations are saved per passage, so the
+      same question never calls the model twice.</td></tr>
+    <tr><th>Model API</th><td>Chosen in week 1 by the evals: the cheapest model that passes, on a
+      free tier or with a spending cap.</td></tr>
+    <tr><th>Model tools</th><td>Wikipedia's REST API, Wiktionary, and the book's own text from
+      Project Gutenberg.</td></tr>
+    <tr><th>MCP servers</th><td>Supabase MCP, for migrations and reading logs.</td></tr>
+    <tr><th>CLIs</th><td>Vercel CLI for deploys, environment variables and logs; Clerk CLI for the
+      auth setup.</td></tr>
+  </table>
+</main>
+</body>
+</html>
